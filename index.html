@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dignidade Premium 2</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      background: #E9E1F7;
+      font-family: 'Poppins', sans-serif;
+      color: #5A4A72;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .container {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 24px rgba(90, 74, 114, 0.15);
+      max-width: 700px;
+      width: 100%;
+      display: flex;
+      overflow: hidden;
+      padding: 40px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .text-section {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+    .text-section h1 {
+      font-weight: 600;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      color: #7D67A6;
+    }
+    .text-section p {
+      font-weight: 400;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #7A6E9C;
+      margin-bottom: 30px;
+    }
+    input[type="text"] {
+      width: 100%;
+      max-width: 300px;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 25px;
+      border: 2px solid #7D67A6;
+      outline: none;
+      margin-bottom: 20px;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus {
+      border-color: #9B81CC;
+    }
+    .btn {
+      max-width: 160px;
+      padding: 12px 24px;
+      background: #7D67A6;
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(125, 103, 166, 0.5);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .btn:hover {
+      background: #9B81CC;
+      box-shadow: 0 6px 18px rgba(155, 129, 204, 0.7);
+    }
+    .image-section {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(125, 103, 166, 0.25);
+      overflow: hidden;
+    }
+    .image-section img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    @media(max-width: 720px) {
+      .container {
+        padding: 30px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="text-section">
+    <h1>Dignidade Premium 2</h1>
+    <p>Você estará vendendo sua dignidade a seu único dono legítimo Daniel Freitas. Ao passar sua dignidade não haverá insurreição tampouco insubordinação, é irrevogável e intransferível.</p>
+    <input type="text" id="nomeInput" placeholder="Digite seu nome para assinar" />
+    <button class="btn" id="btnAssinar">Assinar😈</button>
+  </div>
+  <div class="image-section">
+    <img id="imagemDignidade" src="https://i.imgur.com/oFrIbr3.jpeg" alt="Imagem" />
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  emailjs.init("-Js1oijxbkNV5cya9");
+
+  const btn = document.getElementById('btnAssinar');
+  const nomeInput = document.getElementById('nomeInput');
+
+  btn.addEventListener('click', () => {
+    const nome = nomeInput.value.trim();
+    if (!nome) {
+      alert('Por favor, digite seu nome antes de assinar.');
+      nomeInput.focus();
+      return;
+    }
+
+    const certeza = confirm('Certeza?');
+    const img = document.getElementById('imagemDignidade');
+
+    const sendAssinatura = (motivoFinal) => {
+      emailjs.send("service_9yc7tdf", "template_2pxnfe5", {
+        nome: nome,
+        data: new Date().toLocaleString(),
+        motivo: motivoFinal,
+        imagemUrl: img.src
+      }).then(() => {
+        alert(`Assinatura confirmada.\n${nome}, sua dignidade foi entregue ao legítimo dono Daniel Freitas.`);
+      }).catch((err) => {
+        alert("Erro ao enviar assinatura:\n" + JSON.stringify(err, null, 2));
+      });
+    };
+
+    if (certeza) {
+      sendAssinatura("Confirmou vender a dignidade para Daniel Freitas");
+    } else {
+      let continuarLoop = true;
+      while (continuarLoop) {
+        const motivo = prompt('Por que não?');
+        const decisao = confirm('Certeza?');
+        if (decisao) {
+          sendAssinatura(motivo || "Não informado");
+          continuarLoop = false;
+        }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>
