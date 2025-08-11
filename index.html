@@ -102,7 +102,7 @@
 <div class="container">
   <div class="text-section">
     <h1>Dignidade Premium 2</h1>
-    <p>Você estará vendendo sua dignidade a seu único dono legítimo Daniel Freitas. Ao passar sua dignidade não haverá insurreição tampouco insubordinação, é irrevogável e intransferível.</p>
+    <p>Você estará vendendo sua dignidade a seu único dono legítimo Kaio D. Pereira. Ao passar sua dignidade não haverá insurreição tampouco insubordinação, é irrevogável e intransferível.</p>
     <input type="text" id="nomeInput" placeholder="Digite seu nome para assinar" />
     <button class="btn" id="btnAssinar">Assinar😈</button>
   </div>
@@ -136,14 +136,14 @@
         motivo: motivoFinal,
         imagemUrl: img.src
       }).then(() => {
-        alert(`Assinatura confirmada.\n${nome}, sua dignidade foi entregue ao legítimo dono Daniel Freitas.`);
+        alert(`Assinatura confirmada.\n${nome}, sua dignidade foi entregue ao legítimo dono Sr. Kaio.`);
       }).catch((err) => {
         alert("Erro ao enviar assinatura:\n" + JSON.stringify(err, null, 2));
       });
     };
 
     if (certeza) {
-      sendAssinatura("Confirmou vender a dignidade para Daniel Freitas");
+      sendAssinatura("Confirmou vender a dignidade para Kaio P");
     } else {
       let continuarLoop = true;
       while (continuarLoop) {
@@ -155,6 +155,7 @@
         }
       }
     }
+
   });
 </script>
 
